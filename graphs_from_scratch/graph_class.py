@@ -13,9 +13,10 @@ class Graph():
         pass
 
     def number_edges(self):
-        pass
+        return len(self.edges)
+
     def number_vertices(self):
-        pass
+        return len(self.vertices)
     def number_edges_and_vertices(self):
         '''Methods to compute the number of edges and vertices.'''
         edges=self.number_edges()
