@@ -3,11 +3,13 @@
 
 class Graph():
 
-    def __init__(self) -> None:
+    def __init__(self,vertices:list,edges:list) -> None:
         '''A Python class that represents a directed graph. Graphs are constructed from
         a list of vertices and a list of edges, where each edge is a tuple like
         (source_vertex, target_vertex).
         '''
+        self.vertices=vertices
+        self.edges=edges
         pass
 
     def number_edges(self):
