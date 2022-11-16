@@ -1,0 +1,13 @@
+version: "2.3"
+services:
+  dev:
+    build:
+      context: .
+    volumes:
+      - .:/home/graphs_from_scratch/workspace
+      - ~/.gitconfig:/home/graphs_from_scratch/workspace/.gitconfig
+    ipc: host
+    runtime: nvidia
+    command: bash
+    stdin_open: true
+    tty: true
