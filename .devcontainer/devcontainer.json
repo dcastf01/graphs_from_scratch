@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/docker-existing-dockerfile
+{
+	"name": "Existing Dockerfile",
+	// Sets the run context to one level up instead of the .devcontainer folder.
+	"context": "..",
+	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+	"dockerFile": "../Dockerfile",
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"editor.rulers": [
+			120
+		],
+		"files.trimFinalNewlines": true,
+		"files.trimTrailingWhitespace": true,
+		"files.insertFinalNewline": true,
+		"isort.args": [
+			"--py", "37", "--profile", "black"
+		],
+		"black-formatter.args": [
+			"-t", "py37", "-l", "120", "-S"
+		],
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter",
+			"editor.formatOnSave": true,
+			"editor.codeActionsOnSave": {
+				"source.organizeImports": true
+			}
+		}
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-python.python",
+		"eamodio.gitlens",
+		"ms-python.isort",
+		"ms-python.black-formatter"
+	],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Uncomment the next line to run commands after the container is created - for example installing curl.
+	// "postCreateCommand": "",
+	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust cp -r /source_directory/{folder1,folder2,folder3} /destination
+	"runArgs": [
+		"--ipc=host"
+	],
+	// "build": {
+	// 	"args": {
+	// 		"GITLAB_TOKEN": "${localEnv:GITLAB_TOKEN}"
+	// 	}
+	// },
+	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
+	// "mounts": [
+	// 	"source=${localEnv:HOME}/.gitconfig,target=/home/graphs_from_scratch/.gitconfig,type=bind"
+	// ],
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/graphs_from_scratch/workspace,type=bind,consistency=delegated",
+	"workspaceFolder": "/home/graphs_from_scratch/workspace"
+	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "vscode"
+}
