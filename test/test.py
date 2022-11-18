@@ -70,4 +70,7 @@ def create_plot_and_check_if_has_title_and_axis():
 
     g = Graph(vertices, edges)
     fig, axs = g.plot_histogram(f_path_image)
-    print(axs)
+    for ax in axs:
+        assert ax.get_title() != ''
+        assert ax.get_xlabel() != ''
+        assert ax.get_ylabel() != ''
