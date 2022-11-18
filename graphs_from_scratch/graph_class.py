@@ -1,6 +1,8 @@
 import json
 import os
 
+import matplotlib.pyplot as plt
+
 
 class Graph:
     def __init__(self, vertices: list, edges: list) -> None:
@@ -49,10 +51,40 @@ class Graph:
         # edges= for
         return cls(js_graph.keys(), edges)
 
-    def plot_histogram(self):
+    def number_in_degrees(self):
+        # for
+        adj_out_lit = {v: [] for v in self.vertices}
+
+        for s, t in self.edges:
+            adj_out_lit[str(t)].append(s)
+
+        degrees = {}
+        for k, v in self.adjlist.items():
+
+            degrees[len(v)] = degrees[len(v)] + 1 if len(v) in degrees else 1
+        return degrees
+
+    def number_out_degrees(self):
+        degrees = {}
+        for k, v in self.adjlist.items():
+
+            degrees[len(v)] = degrees[len(v)] + 1 if len(v) in degrees else 1
+            #  +=1
+            # else:
+            # degrees[len(v)] =1
+        return degrees
+
+    def plot_histogram(self, filename):
         '''Functionality to plot a histogram of vertex in- and out-degrees and save it as
         PNG with appropriate title and axes labelling.'''
+        degrees_in = self.number_in_degrees()
+        degrees_out = self.number_out_degrees()
+
+        fig, ax = plt.figure("Degree of our graph", figsize=(16, 8))
+        print('asdad')
+
         pass
 
 
-Graph.deserialize_to_json('/home/graphs_from_scratch/workspace/test/data_test/test.json')
+a = Graph.deserialize_to_json('/home/graphs_from_scratch/workspace/test/data_test/test.json')
+a.plot_histogram()

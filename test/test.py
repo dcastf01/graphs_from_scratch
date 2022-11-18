@@ -26,13 +26,32 @@ def test_serialize():
     assert os.path.isfile(f_path)
 
 
+def test_out_degree():
+    # wecopy and paste in the case we modify the main user case
+    vertices = [0, 1, 2, 3, 4, 5]
+    edges = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+    g = Graph(vertices, edges)
+    assert g.number_out_degrees()[0] == 1
+    assert g.number_out_degrees()[1] == 5
+
+
+def test_in_degree():
+    # wecopy and paste in the case we modify the main user case
+    vertices = [0, 1, 2, 3, 4, 5]
+    edges = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+    g = Graph(vertices, edges)
+    assert g.number_out_degrees()[0] == 1
+    assert g.number_out_degrees()[1] == 5
+
+
 def test_deserialize():
     test_serialize()
     # we check if we create a file json or not in data
     g = Graph.deserialize_to_json(f_path)
-    num_vertices = [int(v) for v in g.vertices]
-    assert str_vertices == vertices
-    assert g.edges == edges
+    int_vertices = [int(v) for v in g.vertices]
+    int_edges = [(int(s), t) for s, t in g.edges]
+    assert int_vertices == vertices
+    assert int_edges == edges
 
 
-test_deserialize()
+# test_deserialize()
