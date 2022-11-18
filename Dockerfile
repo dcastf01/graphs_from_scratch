@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install libsm6 libxext6 build-essential git -y
 
 ADD requirements.txt .
 RUN pip install -r requirements.txt
-Run pip install .
+
 
 RUN useradd -ms /bin/bash graphs_from_scratch
 USER graphs_from_scratch
