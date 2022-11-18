@@ -18,7 +18,6 @@ class Graph:
 
         for s, t in self.edges:
             self.adjlist[str(s)].append(t)
-        # [ self.adjfor s,t in self.edges]
 
     def number_edges(self):
         return len(self.edges)
@@ -48,11 +47,9 @@ class Graph:
             for v in list_values:
                 edges.append((s, v))
 
-        # edges= for
         return cls(js_graph.keys(), edges)
 
     def number_in_degrees(self):
-        # for
         adj_out_lit = {v: [] for v in self.vertices}
 
         for s, t in self.edges:
@@ -69,22 +66,29 @@ class Graph:
         for k, v in self.adjlist.items():
 
             degrees[len(v)] = degrees[len(v)] + 1 if len(v) in degrees else 1
-            #  +=1
-            # else:
-            # degrees[len(v)] =1
+
         return degrees
 
-    def plot_histogram(self, filename):
+    def plot_histogram(self, filename='sample.png'):
         '''Functionality to plot a histogram of vertex in- and out-degrees and save it as
         PNG with appropriate title and axes labelling.'''
         degrees_in = self.number_in_degrees()
+        deg_in, cnt_in = zip(*degrees_in.items())
+
         degrees_out = self.number_out_degrees()
+        deg_out, cnt_out = zip(*degrees_out.items())
+        plt.rcParams["figure.figsize"] = (18, 12)
+        fig, axs = plt.subplots(2)
+        fig.suptitle("Title for whole figure", fontsize=16)
+        axs[0].hist(degrees_in)
 
-        fig, ax = plt.figure("Degree of our graph", figsize=(16, 8))
-        print('asdad')
+        axs[0].set_title('Degrees In')
 
-        pass
+        axs[1].hist(degrees_out)
+        axs[1].set_title('Degrees out')
 
+        for ax in axs.flat:
+            ax.set(xlabel='degree', ylabel='counts')
 
-a = Graph.deserialize_to_json('/home/graphs_from_scratch/workspace/test/data_test/test.json')
-a.plot_histogram()
+        plt.savefig(filename)
+        return fig, axs
