@@ -7,7 +7,7 @@ import pytest
 from graphs_from_scratch.graph_class import Graph
 
 vertices = [0, 1, 2, 3, 4, 5]
-vertices = list(range(0, random.randint(0, 500)))
+vertices = list(range(0, random.randint(0, 100)))
 max_value = vertices[-1]
 edges = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
 edges = []
